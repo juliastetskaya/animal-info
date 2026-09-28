@@ -1,5 +1,52 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello from Animal Info!");
+        Scanner scanner = new Scanner(System.in);
+        List<Animal> pets = new ArrayList<>();
+
+        int count = readInt(scanner);
+
+        for (int i = 0; i < count; i++) {
+            String type = scanner.nextLine().trim().toLowerCase();
+            if (!type.equals("cat") && !type.equals("dog")) {
+                System.out.println("Incorrect input. Unsupported pet type");
+                continue;
+            }
+
+            String name = scanner.nextLine();
+
+            int age = readInt(scanner);
+
+            if (age <= 0) {
+                System.out.println("Incorrect input. Age <= 0");
+                continue;
+            }
+
+            if (type.equals("dog")) {
+                pets.add(new Dog(name, age));
+            } else {
+                pets.add(new Cat(name, age));
+            }
+        }
+
+        for (Animal pet : pets) {
+            System.out.println(pet);
+        }
+        scanner.close();
+    }
+
+    private static int readInt(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            System.out.println("Could not parse a number. Please, try again");
+            scanner.next();
+        }
+
+        int number = scanner.nextInt();
+        scanner.nextLine();
+        return number;
     }
 }
+

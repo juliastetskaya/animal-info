@@ -58,7 +58,7 @@ class MainTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -5})
     void shouldRejectPetWithNonPositiveAge(int age) {
-        String input = "1\ncat\nBarsik\n" + age + "\n";
+        String input = "1\ndog\nRex\n" + age + "\n";
 
         try (Scanner scanner = new Scanner(input)) {
             Main.run(scanner);
@@ -73,7 +73,7 @@ class MainTest {
 
     @Test
     void shouldRetryWhenAgeIsNotANumber() {
-        String input = "1\ncat\nBarsik\nabc\n3\n";
+        String input = "1\ndog\nRex\nabc\n3\n";
         try (Scanner scanner = new Scanner(input)) {
             Main.run(scanner);
         }
@@ -81,7 +81,7 @@ class MainTest {
         String expected =
                 "Could not parse a number. Please, try again"
                         + System.lineSeparator()
-                        + "Cat name = Barsik, age = 3"
+                        + "Dog name = Rex, age = 3"
                         + System.lineSeparator();
 
         assertEquals(expected, output.toString());

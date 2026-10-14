@@ -5,6 +5,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        run(scanner);
+    }
+
+    protected static void run(Scanner scanner) {
         List<Animal> pets = new ArrayList<>();
 
         int count = readInt(scanner);
